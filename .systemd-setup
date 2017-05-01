@@ -1,0 +1,12 @@
+[Unit]
+Description=ETL Utility Server
+After=network.target
+
+[Service]
+User=tenders
+Group=nogroup
+WorkingDirectory=/home/tenders/util_service/app
+ExecStart= /home/tenders/.pyenv/versions/etl_util_env/bin/gunicorn -w 4 -b 192.168.101.45:5000 app:app 
+
+[Install]
+WantedBy=multi-user.target
