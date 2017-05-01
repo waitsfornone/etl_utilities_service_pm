@@ -1,0 +1,12 @@
+{% extends "index.html" %}
+{% block content %}
+    <form action="{{ url_for('api_checker') }}" method="POST">
+    <div>
+        <input type="text" name="api_key" value="API Key"> 
+        <input type="submit" value="Check">
+    </div>
+    <div>
+        {% block results %}{% endblock %}
+    </div>
+    </form>
+{% endblock %}
