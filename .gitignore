@@ -1,0 +1,8 @@
+# Vim swap files (just in case)
+*.swp
+
+# Upload folders
+rules/
+documentation/
+
+
