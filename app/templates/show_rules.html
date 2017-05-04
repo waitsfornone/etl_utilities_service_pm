@@ -1,6 +1,10 @@
 {% extends "index.html" %}
 {% block content %}
+<h1>Rule Templates</h1>
 <div>
-    <p>{{ files }}</p>
-    </div>
+    <ul>
+    {% for file in files %}
+        <li><a href="{{ file }}">{{ file }}</a></li>
+    </ul>
+</div>
 {% endblock %}
