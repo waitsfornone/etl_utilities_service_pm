@@ -44,7 +44,7 @@ def upload():
 
 @app.route('/show_rules')
 def show_rules():
-    files = list_files('static/rules')
+    files = list_files(app.root_path, 'static/rules')
     return render_template(
         'show_rules.html',
         files=files
