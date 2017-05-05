@@ -1,6 +1,15 @@
-from flask import Flask, render_template, url_for, request, flash, redirect, send_from_directory
+from flask import (
+    Flask,
+    render_template,
+    url_for,
+    request,
+    flash,
+    redirect,
+    send_from_directory
+)
 from flask_uploads import UploadSet, configure_uploads
 from file_funcs import list_files
+import os
 
 app = Flask(__name__)
 app.secret_key = 'asdfkjqwg[q89ei4yut;oqeirhg[03w4higr'
@@ -44,7 +53,7 @@ def upload_rules():
 
 @app.route('/show_rules')
 def show_rules():
-    files = list_files(app.root_path, 'static/rules')
+    files = list_files(app.root_path, app.config['UPLOADED_RULES_DEST'])
     return render_template(
         'show_rules.html',
         files=files
@@ -54,7 +63,7 @@ def show_rules():
 @app.route('/<path:path>')
 def serve_rules(path):
     filename = path.split('/')[-1]
-    dirpath = path.split('/')[:-1].join('/')
+    dirpath = os.path.join(app.root_path, app.config['UPLOADED_RULES_DEST'])
     return send_from_directory(dirpath, filename, as_attachement=True)
 
 # For downloading files, a url per file and use send_from_directory()
