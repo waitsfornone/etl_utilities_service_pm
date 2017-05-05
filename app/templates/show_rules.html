@@ -2,12 +2,12 @@
 {% block content %}
 <h1>Rule Templates</h1>
 <div>
-    <a href="{{ url_for('upload_rules') }}">Upload Template</a>
+    <a href="{{ url_for('show_rules') }}">Upload Template</a>
 </div>
 <div>
     <ul>
     {% for file in files %}
-        <li><a href="{{ file }}">{{ file }}</a></li>
+        <li><a href="{{ url_for('serve_rules', path=file }}">{{ file }}</a></li>
     {% endfor %}
     </ul>
 </div>
