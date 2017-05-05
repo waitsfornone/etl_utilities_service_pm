@@ -9,6 +9,7 @@ from flask import (
 )
 from flask_uploads import UploadSet, configure_uploads
 from file_funcs import list_files
+from api_checker import validate_api
 
 app = Flask(__name__)
 app.secret_key = 'asdfkjqwg[q89ei4yut;oqeirhg[03w4higr'
@@ -32,7 +33,8 @@ def api_key():
 
 @app.route('/api_checker', methods=['POST'])
 def api_checker():
-    if len(request.form.get('api_key', None)) == 53:
+    api_key = request.form.get('api_key', None)
+    if validate_api(api_key):
         return render_template('api_results.html', results="API Key is good!")
     else:
         return render_template(
@@ -67,8 +69,3 @@ def serve_rules(path):
         filename,
         as_attachment=True
     )
-
-# For downloading files, a url per file and use send_from_directory()
-# Listing the files and creating the URL will have to be done manually.
-# I still need to figure out how to have the links REALLY work. But I think it
-# is passing the filepath correctly to send_from_directory()

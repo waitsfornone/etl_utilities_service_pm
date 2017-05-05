@@ -14,15 +14,11 @@ html {
 
 /**
  * Remove default margin.
- */
 
 body {
   margin: 0;
 }
-
-a {
-    color:yellow;
-}
+*/
 
 /* HTML5 display definitions
    ========================================================================== */
@@ -92,6 +88,7 @@ template {
 
 a {
   background-color: transparent;
+  color: black;
 }
 
 /**
