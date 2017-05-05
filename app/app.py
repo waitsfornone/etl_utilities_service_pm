@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, request, flash, redirect
+from flask import Flask, render_template, url_for, request, flash, redirect, send_from_directory
 from flask_uploads import UploadSet, configure_uploads
 from file_funcs import list_files
 
@@ -34,7 +34,7 @@ def api_checker():
 
 
 @app.route('/rules', methods=['GET', 'POST'])
-def upload():
+def upload_rules():
     if request.method == 'POST' and 'rules' in request.files:
         rules.save(request.files['rules'])
         flash("Rule template saved.")
@@ -49,6 +49,13 @@ def show_rules():
         'show_rules.html',
         files=files
     )
+
+
+@app.rout('/<path:path>')
+def serve_rules(path):
+    filename = path.split('/')[-1]
+    dirpath = path.split('/')[:-1].join('/')
+    return send_from_directory(dirpath, filename, as_attachement=True)
 
 # For downloading files, a url per file and use send_from_directory()
 # Listing the files and creating the URL will have to be done manually.
