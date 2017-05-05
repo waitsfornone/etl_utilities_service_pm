@@ -51,7 +51,7 @@ def show_rules():
     )
 
 
-@app.rout('/<path:path>')
+@app.route('/<path:path>')
 def serve_rules(path):
     filename = path.split('/')[-1]
     dirpath = path.split('/')[:-1].join('/')
