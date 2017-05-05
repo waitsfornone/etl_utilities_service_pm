@@ -9,7 +9,7 @@ from flask import (
 )
 from flask_uploads import UploadSet, configure_uploads
 from file_funcs import list_files
-from api_checker import validate_api
+from api_check import validate_api
 
 app = Flask(__name__)
 app.secret_key = 'asdfkjqwg[q89ei4yut;oqeirhg[03w4higr'
