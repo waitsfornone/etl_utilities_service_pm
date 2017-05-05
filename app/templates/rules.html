@@ -1,6 +1,6 @@
 {% extends "index.html" %}
 {% block content %}
-    <form method=POST enctype=multipart/form-data action="{{ url_for('upload') }}">
+    <form method=POST enctype=multipart/form-data action="{{ url_for('upload_rules') }}">
         <div>
             <input type=file name=rules>
             <input type=submit>

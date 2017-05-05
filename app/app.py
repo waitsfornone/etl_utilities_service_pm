@@ -9,7 +9,6 @@ from flask import (
 )
 from flask_uploads import UploadSet, configure_uploads
 from file_funcs import list_files
-import os
 
 app = Flask(__name__)
 app.secret_key = 'asdfkjqwg[q89ei4yut;oqeirhg[03w4higr'
@@ -60,11 +59,14 @@ def show_rules():
     )
 
 
-@app.route('/<path:path>')
+@app.route('/<path:path>', methods=['GET'])
 def serve_rules(path):
     filename = path.split('/')[-1]
-    dirpath = os.path.join(app.root_path, app.config['UPLOADED_RULES_DEST'])
-    return send_from_directory(dirpath, filename, as_attachement=True)
+    return send_from_directory(
+        app.config['UPLOADED_RULES_DEST'],
+        filename,
+        as_attachment=True
+    )
 
 # For downloading files, a url per file and use send_from_directory()
 # Listing the files and creating the URL will have to be done manually.
