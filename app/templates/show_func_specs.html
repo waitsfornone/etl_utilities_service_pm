@@ -1,0 +1,14 @@
+{% extends "index.html" %}
+{% block content %}
+<h1>Rule Templates</h1>
+<div>
+    <a href="{{ url_for('upload_func_specs') }}">Upload Template</a>
+</div>
+<div>
+    <ul>
+    {% for file in files %}
+        <li><a href="{{ url_for('serve_func_specs', path=file) }}">{{ file }}</a></li>
+    {% endfor %}
+    </ul>
+</div>
+{% endblock %}
