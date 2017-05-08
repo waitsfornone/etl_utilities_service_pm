@@ -19,6 +19,7 @@ funcspec = UploadSet('funcspec', extensions='pdf')
 app.config['UPLOADED_RULES_DEST'] = 'static/rules'
 app.config['UPLOADED_FUNCSPEC_DEST'] = 'static/func_specs'
 configure_uploads(app, rules)
+configure_uploads(app, funcspec)
 
 
 @app.route('/')
